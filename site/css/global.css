@@ -1,0 +1,394 @@
+a:link {
+    border: 0;
+}
+
+body {
+    background-image: url(/img/tile.jpg);
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+img {
+    border: none;
+}
+a:hover {
+    border: none;
+}
+a:link {
+    border: none;
+}
+a:visited {
+    border: none;
+}
+textarea {
+    margin-bottom: 10px;
+    font-family: "Lucida Grande";
+    font-size: 11px;
+    padding: 0;
+}
+input {
+    margin: 0;
+    padding: 0;
+}
+.contacts, .bio, .links, .events, .subscribe, .subscriber_confirm { 
+    margin: auto 90px;
+    width: 850px;
+}
+<!--[if IE]>
+.contacts, .bio, .links, .events, .subscribe, .subscriber_confirm { 
+    margin: auto 40px;
+}
+<![endif]-->
+
+.events div img {
+    position:absolute;
+    padding: 3px 0 0 10px;
+}
+
+.events {
+    float:left;
+    height:500px;
+    overflow:hidden;
+    padding:5px;
+    width: 700px;
+}
+.events td {
+    font-weight: bold;
+    font-family: "georgia";
+    color: #7A7A7A;
+    
+}
+
+a {
+    font-family: "georgia";
+}
+div > h4, div > p, div > h5 {
+    font-family: "georgia";
+    color: rgb(122,122,122);
+    margin: 10px 0;
+}
+div > h4 {
+    font-size: 18px;
+}
+div > h5 {
+    font-size: 16px;
+    margin-top: 30px;
+}
+div > p {
+    font-size: 13px;
+}
+
+.awards {
+    overflow: hidden;
+    height: 350px;
+    float: left;
+    padding: 5px;
+}
+.awards table {
+    width: 800px;
+}
+.awards tbody td {
+    vertical-align:top;
+}
+.awards ul {
+    list-style-type:none;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+.awards li {
+    font-family: "georgia";
+    color: rgb(122,122,122);
+    padding: 0;
+}
+.awards li.exhibition {
+    font-size: 13px;
+    font-style: bold;
+    margin: 0;
+}
+.awards li.description {
+    font-size: 12px;
+    font-style: italic;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+.awards li.award {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+pre {
+    font-family: "georgia";
+    color: rgb(122,122,122);
+    font-size: 12px;
+    line-height: 1.2em;
+}
+dl { 
+    font-family: "georgia";
+    color: rgb(122,122,122);
+    padding-bottom: 20px;
+} 
+dt { 
+    float: left; 
+    clear: left; 
+    width: 140px; 
+    text-align: right; 
+    font-weight: bold; 
+} 
+dd { 
+    margin: 0 0 0 150px; 
+    padding: 0 0 0.5em 0; 
+}
+.content {
+    background: rgb(10,10,11) url(/img/background.jpg) no-repeat scroll;
+    width: 1034px;
+    height: 813px;
+    margin: 0 auto;
+    border: thin black solid;
+}
+.title {
+    margin: 15px 0 5px 0;
+    text-align: center;
+    width: 100%;
+}
+.title img.line {
+    margin-top: 5px;
+}
+
+.main {
+    margin-top: 100px;
+}
+
+.admin {
+    margin-top: 100px;
+}
+
+.slideshow-thumbnails {
+    height: 400px;
+    left: auto;
+    right: -290px;
+    top: 100px;
+    width: 230px;
+}
+.slideshow-thumbnails ul {
+    height: 400px;
+    width: 230px;
+}  
+.slideshow {
+    margin-left: 90px;
+}
+
+#slideshow_description {
+    color:#7A7A7A;
+    font-family:"georgia";
+    font-size: 14px;
+}
+
+.nav, .admin_nav {
+    width: 100%;
+}
+.nav ul, .admin_nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nav ul li {
+    float: left;
+    width: 19.8%;
+}
+.admin_nav ul li {
+    float: left;
+    width: 15%;
+}
+.nav ul li a, .admin_nav ul li a {
+    background-repeat: no-repeat;
+    display: block;
+    background-position: top center;
+}
+.nav ul li a {
+    height: 35px;
+}
+.nav ul li a:hover {
+    opacity: 0.7;
+}
+.admin_nav ul li a {
+    height: 20px;
+}
+.nav a#home {
+    background-image: url('/img/home.png');
+}
+.nav a#bio {
+    background-image: url('/img/bio.png');
+}
+.nav a#events {
+    background-image: url('/img/events.png');
+}
+.nav a#contacts {
+    background-image: url('/img/contacts.png');
+    background-position: 55% 30%;
+}
+.nav a#links {
+    background-image: url('/img/links.png');
+}
+.main table#primary_nav {
+    margin: 0 auto;
+    width: 100%;
+}
+.main td > a {
+    background-repeat:no-repeat;
+    display:block;
+    height:60px;
+}
+.main td > a:hover {
+    opacity: 0.7;
+}
+.main td > a#paintings {
+    background-image: url('/img/paintings.png');
+    background-position:center right;
+    width:250px;
+    margin-right: -1px;
+}
+.main td > a#illustrations {
+    background-image: url('/img/illustrations.png');
+    background-position:center right;
+    width:280px;
+    margin-right: -1px;
+    padding-left: 5px;
+}
+.main td > a#vinyl {
+    background-image: url('/img/vinyl.png');
+    background-position:center left;
+    width:150px;
+    margin-left:-5px;
+}
+.main td > a#photographs {
+    background-image: url('/img/photographs.png');
+    background-position:center left;
+    width: 320px;
+    margin-left:-5px;
+}
+img:hover {
+    cursor: pointer;
+}
+.main td > img:hover {
+    opacity: 0.7;
+}
+.gallery_nav {
+    margin: 0 30px;
+}
+.admin_nav ul {
+    margin: 0;
+    padding: 0;
+}
+.admin_nav li {
+    list-style:none;
+    display:inline;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 1.1em;
+    text-decoration: none;
+    border: thin solid white;
+    background-color: grey;
+}
+.admin_nav li a {
+    color: white;
+}
+.admin_nav li a:hover {
+    color: blue;
+}
+input[type="submit"] {
+    font-size: 0.8em;
+}
+form.form{
+    margin: 5px 0;
+    padding: 20px;
+    width: 580px;
+}
+form.form span.required {
+    text-align: left;
+}
+form.form h2 {
+    clear: left;
+    font: bold 1em/1em "Trebuchet MS", Verdana, Arial, "SF Sans Serif", sans-serif;
+    text-align: left;
+    margin: 5px 0 0 0;
+}
+form.form label {
+    font: bold 0.6em/1em "Trebuchet MS", Verdana, Arial, sans-serif; 
+    margin: 0 15px 0 0;
+}
+form.form div.row{
+    clear: both;
+    height: 15px;
+    font-size: 18px;
+    margin: 15px 0 0 0;
+} 
+form.form .col1{float: left; width: 100px; text-align: right;} 
+form.form .col2{float: left; width: 110px; text-align: left;} 
+form.form .col3{float: left; width: 100px; text-align: right;} 
+form.form .col4{float: left; width: 110px; text-align: left;} 
+form.form .col5{float: left; width: 100px; text-align: right;} 
+form.form .col6{float: left; width: 110px; text-align: left;} 
+form.form .col2b{float: left; width: 280px; text-align: left;} 
+form.form .col3b{float: left; width: 50px; text-align: left;} 
+form.form .col4b{float: left; width: 200px; text-align: left;} 
+
+table.edit { 
+    width: 580px;
+    margin: 10px auto;
+    border-collapse: collapse;
+    border-spacing: 0px; 
+    background-color: grey;
+    border: 3px white solid;
+}
+table.edit thead th { 
+    border: 1px white solid;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 12px;
+}
+table.edit tbody td { 
+    border: 1px white solid;
+    text-align: left;
+    font-family: Verdana, sans-serif, Arial;
+    font-weight: normal;
+    font-size: .7em;
+}
+
+#track {
+    height: 360px;
+    width: 10px;
+    float: left;
+    position: relative;
+    background: #ddd;
+}
+
+#track_event {
+    height: 500px;
+    width: 10px;
+    float: left;
+    position: relative;
+    background: #ddd;
+}
+
+#thumb {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    height: 10px;
+    width: 10px;
+    background: #555555;
+    cursor: pointer;
+}
+
+#thumb_event {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    height: 10px;
+    width: 10px;
+    background: #555555;
+    cursor: pointer;
+}
+
+

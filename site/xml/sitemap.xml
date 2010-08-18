@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.mikeferrari.net/</loc>
+  <priority>1.00</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/home</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/bio</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/events</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/contacts</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/links</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/gallery/?view=ag9taWNoYWVsamZlcnJhcmlyEgsSDEdhbGxlcnlNb2RlbBgBDA</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/gallery/?view=ag9taWNoYWVsamZlcnJhcmlyEgsSDEdhbGxlcnlNb2RlbBgDDA</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/gallery/?view=ag9taWNoYWVsamZlcnJhcmlyEgsSDEdhbGxlcnlNb2RlbBgCDA</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.mikeferrari.net/gallery/?view=ag9taWNoYWVsamZlcnJhcmlyEwsSDEdhbGxlcnlNb2RlbBjpBww</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+</urlset>
