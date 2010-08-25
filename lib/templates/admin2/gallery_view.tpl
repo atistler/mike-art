@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <label class="col1"><span class="required">* </span>File:</label>
-                <span class="col2"><input type="file" name="img"/></span>
+                <span class="col2"><input type="file" name="img" value=""/></span>
             </div>
             <div class="row">
                 <span class="col1"><input type="submit" value="Create"/></span>

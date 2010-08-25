@@ -18,7 +18,11 @@
 		<dt>Email Address:</dt>
 		<dd><input type="text" name="email"/></dd>
 		<dt></dt>
-		<dd><input type="submit" name="create" value="Submit"/></dd>
+		<dd>
+                    <button class="rounded" type="submit" name="create" value="1">
+                        <span>Sign-up</span>
+                    </button>
+                </dd>
 	</dl>
 	</form>
 </div>

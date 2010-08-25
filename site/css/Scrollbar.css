@@ -1,0 +1,55 @@
+#products {
+	position: relative;
+	height: 180px;
+	width: 802px;
+	overflow: hidden;
+}
+
+#products ul {
+	width: 3000px;
+	height: 180px;
+	background-color: #ddd;
+}
+
+#products li {
+	color: #888;
+	float: left;
+	width: 200px;
+	position: relative;
+	font-size: 156px;
+	text-align: center;
+	line-height: 180px;
+	list-style-type: none;
+	background-color: white;
+}
+
+#bar {
+	top: 0;
+	left: 100px;
+	width: 600px;
+	height: 21px;
+	position: relative;
+	background-color: #bbb;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#knob {
+	top: 1px;
+	width: 100px;
+	height: 19px;
+	background-color: white;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
+#theSixth {
+	top: 2px;
+	left: 235px;
+	position: absolute;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}

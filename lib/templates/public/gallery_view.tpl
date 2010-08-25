@@ -27,9 +27,5 @@
 	{% endfor %}
 	};
 
-	var slideshow = new Slideshow(
-		'my_slideshow', 
-		data, 
-		{ captions: true, height: 550, width: 550, controller: true, thumbnails: true, overlap: false, resize: 'length', linked: true, delay: 3000, paused: true }
-	);
+
 </script>

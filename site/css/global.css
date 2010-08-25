@@ -56,7 +56,7 @@ input {
     font-weight: bold;
     font-family: "georgia";
     color: #7A7A7A;
-    
+    font-size: 13px;
 }
 
 a {
@@ -69,7 +69,9 @@ div > h4, div > p, div > h5 {
 }
 div > h4 {
     font-size: 18px;
+    margin-top: 25px;
 }
+
 div > h5 {
     font-size: 16px;
     margin-top: 30px;
@@ -192,13 +194,15 @@ dd {
     margin: 0;
     padding: 0;
 }
+
 .nav ul li {
     float: left;
     width: 19.8%;
 }
 .admin_nav ul li {
     float: left;
-    width: 15%;
+    width: 17.8%;
+    text-align: center;
 }
 .nav ul li a, .admin_nav ul li a {
     background-repeat: no-repeat;
@@ -239,34 +243,8 @@ dd {
     display:block;
     height:60px;
 }
-.main td > a:hover {
-    opacity: 0.7;
-}
-.main td > a#paintings {
-    background-image: url('/img/paintings.png');
-    background-position:center right;
-    width:250px;
-    margin-right: -1px;
-}
-.main td > a#illustrations {
-    background-image: url('/img/illustrations.png');
-    background-position:center right;
-    width:280px;
-    margin-right: -1px;
-    padding-left: 5px;
-}
-.main td > a#vinyl {
-    background-image: url('/img/vinyl.png');
-    background-position:center left;
-    width:150px;
-    margin-left:-5px;
-}
-.main td > a#photographs {
-    background-image: url('/img/photographs.png');
-    background-position:center left;
-    width: 320px;
-    margin-left:-5px;
-}
+
+
 img:hover {
     cursor: pointer;
 }
@@ -392,3 +370,52 @@ table.edit tbody td {
 }
 
 
+#gallery_nav img {
+    position: absolute;
+}
+
+#gallery_nav  a.vinyl {
+    background-image: url('/img/vinyl.png');
+    background-position:left center;
+    background-repeat:no-repeat;
+    display:block;
+    height:150px;
+    margin-right:25px;
+    text-indent:-9999px;
+}
+#gallery_nav a.photographs {
+    background-image: url('/img/photographs.png');
+    background-position: left center;
+    background-repeat:no-repeat;
+    display:block;
+    height:150px;
+    margin-right:25px;
+    text-indent:-9999px;
+}
+#gallery_nav  a.illustrations {
+    background-image: url('/img/illustrations.png');
+    background-position:right center;
+    background-repeat:no-repeat;
+    display:block;
+    height:150px;
+    margin-right:25px;
+    text-indent:-9999px;    
+}
+#gallery_nav a.paintings {
+    background-image:url("/img/paintings.png");
+    background-position:right center;
+    background-repeat:no-repeat;
+    display:block;
+    height:150px;
+    margin-right:25px;
+    text-indent:-9999px;
+}
+#gallery_nav a:hover {
+    opacity: 0.7;
+}
+
+.subscribe button {
+    font-size: 13px;
+    font-weight: bold;
+    width:80px;
+}

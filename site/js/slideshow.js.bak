@@ -1,7 +1,7 @@
 /**
 Script: Slideshow.js
 	Slideshow - A javascript class for Mootools to stream and animate the presentation of images on your website.
-NEWVERSION
+
 License:
 	MIT-style license.
 
@@ -16,10 +16,7 @@ Dependencies:
 Slideshow = new Class({
 	Implements: [Chain, Events, Options],
 	
-	options: {/*
-		onComplete: $empty,
-		onEnd: $empty,
-		onStart: $empty,*/
+	options: {
 		captions: false,
 		center: true,
 		classes: [],
@@ -34,15 +31,18 @@ Slideshow = new Class({
 		loader: {'animate': ['/img/loader-#.png', 12]},
 		loop: true,
 		match: /\?slide=(\d+)$/,
+		/*
+		onComplete: $empty,
+		onEnd: $empty,
+		onStart: $empty,
+		*/
 		overlap: true,
 		paused: false,
-		properties: ['href', 'rel', 'rev', 'title'],
 		random: false,
 		replace: [/(\.[^\.]+)$/, 't$1'],
 		resize: 'width',
 		slide: 0,
 		thumbnails: false,
-		titles: true,
 		transition: function(p){return -(Math.cos(Math.PI * p) - 1) / 2;},
 		width: false
 	},
@@ -78,8 +78,6 @@ Syntax:
 			this.options.href = anchor.get('href') || '';
 		if (this.options.hu.length && !this.options.hu.test(/\/$/)) 
 			this.options.hu += '/';
-		if (this.options.fast === true)
-			this.options.fast = 2;
 			
 		// styles
 		
@@ -103,11 +101,9 @@ Syntax:
 			var thumbnails = this.slideshow.getElements(this.classes.get('thumbnails') + ' img');
 			this.slideshow.getElements(this.classes.get('images') + ' img').each(function(img, i){
 				var src = img.get('src');
-				var caption = $pick(img.get('alt'), img.get('title'), '');
-				var parent = img.getParent();
-				var properties = (parent.get('tag') == 'a') ? parent.getProperties : {};
+				var caption = img.get('alt') || img.get('title') || '';
 				var href = img.getParent().get('href') || '';
-				var thumbnail = (thumbnails[i]) ? thumbnails[i].get('src') : '';
+				var thumbnail = thumbnails[i].get('src') || '';
 				data[src] = {'caption': caption, 'href': href, 'thumbnail': thumbnail};
 			});
 		}
@@ -141,12 +137,10 @@ Syntax:
 		images.set({'styles': {'display': 'block', 'height': this.height, 'overflow': 'hidden', 'position': 'relative', 'width': this.width}});
 		this.slideshow.store('images', images);
 		this.a = this.image = this.slideshow.getElement('img') || new Element('img');
-		if (Browser.Engine.trident && Browser.Engine.version > 4)
-			this.a.style.msInterpolationMode = 'bicubic';
 		this.a.set('styles', {'display': 'none', 'position': 'absolute', 'zIndex': 1});
 		this.b = this.a.clone();
 		[this.a, this.b].each(function(img){
-			anchor.clone().cloneEvents(anchor).grab(img).inject(images);
+			anchor.clone().grab(img).inject(images);
 		});
 		
 		// optional elements
@@ -177,15 +171,16 @@ Syntax:
 */
 
 	go: function(n, direction){
-		if ((this.slide - 1 + this.data.images.length) % this.data.images.length == n || $time() < this.transition)
+		if ((this.slide - 1 + this.data.images.length) % this.data.images.length == n || $time() < this.transition) {
 			return;		
+		}
 		$clear(this.timer);
 		this.delay = 0;		
 		this.direction = (direction) ? direction : ((n < this.slide) ? 'right' : 'left');
 		this.slide = n;
 		if (this.preloader) 
 			this.preloader = this.preloader.destroy();
-		this._preload(this.options.fast == 2 || (this.options.fast == 1 && this.paused));
+		this._preload(this.options.fast || this.paused);
 	},
 
 /**
@@ -311,7 +306,7 @@ Syntax:
 			data = new Array(data.length).associate(data.map(function(image, i){ return image + '?' + i })); 
 		}
 		this.data = {'images': [], 'captions': [], 'hrefs': [], 'thumbnails': []};
-		for (var image in data){
+		for (image in data){
 			var obj = data[image] || {};
 			var caption = (obj.caption) ? obj.caption.trim() : '';
 			var href = (obj.href) ? obj.href.trim() : ((this.options.linked) ? this.options.hu + image : this.options.href);
@@ -321,8 +316,6 @@ Syntax:
 			this.data.hrefs.push(href);
 			this.data.thumbnails.push(thumbnail);
 		}
-		if (this.options.random)
-			this.slide = $random(0, this.data.images.length - 1);
 		
 		// only run when data is loaded dynamically into an existing slideshow instance
 		
@@ -397,12 +390,10 @@ Private method: preload
 				anchor.set('href', this.data.hrefs[this.slide]);			
 			else
 				anchor.erase('href');
-			var text = (this.data.captions[this.slide])
-				? this.data.captions[this.slide].replace(/<.+?>/gm, '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "'") 
-				: '';
-			this.image.set('alt', text);		
-			if (this.options.titles)
-				anchor.set('title', text);
+			if (this.data.captions[this.slide])
+				anchor.set('title', this.data.captions[this.slide].replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "'"));
+			else
+				anchor.erase('title');
 			if (this.options.loader)
 				this.slideshow.retrieve('loader').fireEvent('hide');
 			if (this.options.captions)
@@ -437,7 +428,7 @@ Private method: show
 			this.image.get('morph').cancel().set(visible); 			
 		} 
 		else {
-			if (this.options.overlap){
+			if (this.options.overlap){	
 				img.get('morph').set(visible);
 				this.image.get('morph').set(hidden).start(visible);
 			} 
@@ -460,7 +451,7 @@ Private method: loaded
 		this.counter++;
 		this.delay = (this.paused) ? Number.MAX_VALUE : $time() + this.options.duration + this.options.delay;
 		this.direction = 'left';
-		this.transition = (this.options.fast == 2 || (this.options.fast == 1 && this.paused)) ? 0 : $time() + this.options.duration;			
+		this.transition = (this.paused || this.options.fast) ? 0 : $time() + this.options.duration;			
 		if (this.slide + 1 == this.data.images.length && !this.options.loop && !this.options.random)
 			this.stopped = this.end = true;			
 		if (this.options.random){
@@ -476,8 +467,6 @@ Private method: loaded
 		}
 		else
 			this.slide = (this.slide + 1) % this.data.images.length;
-		if (this.image.getStyle('visibility') != 'visible')
-			(function(){ this.image.setStyle('visibility', 'visible'); }).delay(1, this);			
 		if (this.preloader) 
 			this.preloader = this.preloader.destroy();
 		this._preload();
@@ -735,10 +724,9 @@ Private method: thumbnails
 					}.bind(this)
 				},
 				'href': this.options.hu + this.data.images[i],
-				'morph': $merge(this.options.thumbnails, {'link': 'cancel'})
+				'morph': $merge(this.options.thumbnails, {'link': 'cancel'}),
+				'title': this.data.captions[i]
 			}).inject(li);
-			if (this.data.captions[i] && this.options.titles)
-				a.set('title', this.data.captions[i].replace(/<.+?>/gm, '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "'"));
 			var img = new Asset.image(this.options.hu + thumbnail, {
 				'onload': function(){this.fireEvent('loaded');}.bind(a) 
 			}).inject(a);

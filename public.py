@@ -1,15 +1,10 @@
 #!/usr/bin/env python
 
-import cgi
-import datetime
 from google.appengine.api import images
-from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 from lib.base import BaseRequestHandler
-from lib.base import PageNotFound
 from lib.getimageinfo import getImageInfo
 from lib.models import EventModel
 from lib.models import GalleryModel
@@ -17,10 +12,12 @@ from lib.models import ImageModel2
 from lib.models import LinkModel
 from lib.models import SubscriberModel
 import logging
-import os
-import wsgiref.handlers
+import datetime
+import xml.dom
+
 
 base_template = "public.tpl"
+empty_template = "empty.tpl"
 _MAX_FETCH = 1000
 PAGESIZE = 10
 
@@ -34,46 +31,60 @@ def priority_sort(x, y):
 
 class Home(BaseRequestHandler):
     def get(self):
-        paintings = GalleryModel.gql("WHERE name = :1", "Paintings").fetch(1)
-        if paintings:
-            paintings_gal = paintings[0]
-        else:
-            paintings_gal = None
-
-        vinyl = GalleryModel.gql("WHERE name = :1", "Vinyl").fetch(1)
-        if vinyl:
-            vinyl_gal = vinyl[0]
-        else:
-            vinyl_gal = None
-
-        illustrations = GalleryModel.gql("WHERE name = :1", "Illustrations").fetch(1)
-        if illustrations:
-            illustrations_gal = illustrations[0]
-        else:
-            illustrations_gal = None 
-
-        photographs	= GalleryModel.gql("WHERE name = :1", "Photographs").fetch(1)
-        if photographs:
-            photographs_gal = photographs[0]
-        else:
-            photographs_gal = None
-	
-
         data = {
-            "paintings_gal":		paintings_gal,
-            "vinyl_gal":			vinyl_gal,	
-            "illustrations_gal":	illustrations_gal,
-            "photographs_gal":		photographs_gal,
             "template":				"public/home.tpl"
-        }
-		
+        }	
         self.generate(base_template, data)
 		
 class Gallery(BaseRequestHandler):
     def get(self):
+        logging.debug(self.request.path)
+        gal_id = -1
+        gal_name = ""
         if (self.request.get("view")):
-            id = self.request.get("view")
-            self.view(id)
+            gal_id = self.request.get("view")
+        elif (self.request.path.startswith('/illustrations')):
+            gal_name = 'illustrations'
+            gal_id = GalleryModel.gql("WHERE name = :name", name='Illustrations').fetch(1)[0].key()
+        elif (self.request.path.startswith('/vinyl')):
+            gal_name = 'vinyl'
+            gal_id = GalleryModel.gql("WHERE name = :name", name='Vinyl').fetch(1)[0].key()
+        elif (self.request.path.startswith('/photographs')):
+            gal_name = 'photographs'
+            gal = GalleryModel.gql("WHERE name = :name", name='Photographs').fetch(1)[0].key()
+        elif (self.request.path.startswith('/paintings')):
+            gal_name = 'paintings'
+            gal_id = GalleryModel.gql("WHERE name = :name", name='Paintings').fetch(1)[0].key()
+        else:
+            self.error(503)
+
+        if ( self.request.path.endswith('list') ):
+            self.view_xml(gal_id)
+        elif ( self.request.path.endswith('flash') ):
+            self.view_flash(gal_name)
+        else:
+            self.view(gal_id)
+
+    def view_flash(self,gal_name):
+        data = {
+            'gal_name': gal_name,
+            'template': 'public/gallery.tpl'
+        }
+        self.generate(empty_template,data)
+
+
+    def view_xml(self, id):
+        gal = GalleryModel.get(id)
+        if (gal):
+            imgs = ImageModel2.gql("WHERE gallery = :gallery", gallery=gal.key()).fetch(_MAX_FETCH)
+            imgs = sorted(imgs, priority_sort)
+            xml = '<?xml version="1.0" encoding="utf-8"?>'
+            xml += '<pics>'
+            for img in imgs:
+                src = '/image/?render=%s' % img.key()
+                xml += '<pic src="%s" title="%s"/>' % (src, img.name)
+            xml += '</pics>'
+            self.response.out.write(xml)
         else:
             self.error(503)
 
@@ -165,14 +176,18 @@ class Image(BaseRequestHandler):
             self.error(503)
 
     def render(self, id):
-        img = ImageModel2.get(id)
-        img_name = img.name.replace(' ', '');
-        img_name 
-        if (img):
-            content_type, width, height = getImageInfo(img.imageblob.image)
-            self.response.headers['Content-Type'] = content_type 
+        image_model = ImageModel2.get(id)
+        img_name = image_model.name.replace(' ', '');
+        if (image_model):
+            img = images.Image(image_model.imageblob.image)
+            img.resize(1024, 768)
+            image_output = img.execute_transforms(output_encoding=images.JPEG)
+            self.response.headers['Content-Type'] = 'image/jpeg' 
             self.response.headers['Content-Disposition'] = 'filename=' + img_name
-            self.response.out.write(img.imageblob.image)
+            expires = datetime.datetime.now() + datetime.timedelta(days=7)
+            self.response.headers.add_header("Expires", expires.strftime("%a, %d %b %Y %H:%M:%S %Z") + "GMT")
+            self.response.headers['Cache-Control'] = 'public,max-age=%d' % int(7*24*60)            
+            self.response.out.write(image_output)
         else:
             self.error(404)
 	
@@ -182,6 +197,9 @@ class Image(BaseRequestHandler):
             content_type, width, height = getImageInfo(img.imageblob.thumbnail)
             self.response.headers['Content-Type'] = content_type
             self.response.headers['Content-Disposition'] = img.name
+            expires = datetime.datetime.now() + datetime.timedelta(days=7)
+            self.response.headers.add_header("Expires", expires.strftime("%a, %d %b %Y %H:%M:%S %Z") + "GMT")
+            self.response.headers['Cache-Control'] = 'public,max-age=%d' % int(7*24*60) 
             self.response.out.write(img.imageblob.thumbnail)
         else:
             self.error(404)
@@ -202,7 +220,8 @@ application = webapp.WSGIApplication([
                                      ('/events', Events),
                                      (r'/gallery/.*', Gallery),
                                      (r'/image/.*', Image),
-                                     (r'.*', Home)
+                                     (r'/(?:paintings|illustrations|vinyl|photographs).*', Gallery),
+                                     (r'/.*', Home)
                                      ], debug=True)
 
 def main():

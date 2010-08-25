@@ -3,7 +3,7 @@ version: 3
 runtime: python
 api_version: 1
 
-default_expiration: "1h"
+default_expiration: "7d"
 
 handlers:
 - url: /img
@@ -15,6 +15,9 @@ handlers:
 - url: /js
   static_dir: site/js
 
+- url: /xml
+  static_dir: site/xml
+  
 - url: /(.*\.xml)
   static_files: site/xml/\1
   upload: site/xml/.*\.xml
@@ -23,8 +26,5 @@ handlers:
   script: admin2.py
   login: required
 
-- url: /gallery/(.*)
-  script: public.py?name=\1
-
-- url: .*
+- url: /.*
   script: public.py
