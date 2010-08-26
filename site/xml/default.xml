@@ -2,8 +2,8 @@
 
 <settings 
 
-background_color="FFFFFF"
-picture_color="FFFFFF"
+background_color="000000"
+picture_color="000000"
 text_color="FFFFFF"
 btn_color="EEEEEE"
 btn_arrow_color="999999"
@@ -18,8 +18,8 @@ thumb_over_color="999999"
 
 text="on"
 fullscreen_icon="on"
-slideshow_icon="off"
+slideshow_icon="on"
 slideshow_autostart="off"
-slideshow_delay="3"
+slideshow_delay="4"
 
 />

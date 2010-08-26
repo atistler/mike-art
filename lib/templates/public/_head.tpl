@@ -2,6 +2,9 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 <meta name="description" content="Artwork By Michael Ferrari"/>
 <meta name="keywords" content="art artwork michael ferrari mike montclair photography photos rutgers vinyl record painting hoboken nj new jersey illustration york hip-hop paramus teacher"/>
+<link rel="image_src" href="http://www.mikeferrari.net/image/?render=ag9taWNoYWVsamZlcnJhcmlyEwsSC0ltYWdlTW9kZWwyGJ2VBgw" / >
+
+<meta name="google-site-verification" content="M9zAXy9Me_Xw1O5bHrQj6A-pbDa9fe9WeQ2qce57sss" />
       
 <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
 
@@ -14,8 +17,3 @@
 <script type="text/javascript" src="/js/scrollbar.js"></script>
 <script type="text/javascript" src="/js/public.js"></script>
 <script type="text/javascript" src="/js/swfobject.js" ></script>
-
-<!--[if lte IE 6]>
-  <script type="text/javascript" src="/js/supersleight-min.js"></script>
-<![endif]-->
-

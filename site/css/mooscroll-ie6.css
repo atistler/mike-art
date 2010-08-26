@@ -1,0 +1,11 @@
+.scroll{
+	/* fixes has-layout-bug in IE6*/
+	zoom:1;	
+}
+
+.scrollHandleBottom{ bottom:-5px; }
+
+.scrollHandle {
+	padding-bottom:10px;	
+	height: 100%;
+}

@@ -3,7 +3,7 @@ version: 3
 runtime: python
 api_version: 1
 
-default_expiration: "7d"
+default_expiration: "1h"
 
 handlers:
 - url: /img
@@ -17,6 +17,13 @@ handlers:
 
 - url: /xml
   static_dir: site/xml
+
+- url: /swf
+  static_dir: site/swf
+
+- url: /(robots\.txt)
+  static_files: site/txt/\1
+  upload: site/txt/
   
 - url: /(.*\.xml)
   static_files: site/xml/\1

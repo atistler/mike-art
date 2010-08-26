@@ -13,7 +13,7 @@ from lib.models import LinkModel
 from lib.models import SubscriberModel
 import logging
 import datetime
-import xml.dom
+from xml.sax.saxutils import quoteattr
 
 
 base_template = "public.tpl"
@@ -51,7 +51,7 @@ class Gallery(BaseRequestHandler):
             gal_id = GalleryModel.gql("WHERE name = :name", name='Vinyl').fetch(1)[0].key()
         elif (self.request.path.startswith('/photographs')):
             gal_name = 'photographs'
-            gal = GalleryModel.gql("WHERE name = :name", name='Photographs').fetch(1)[0].key()
+            gal_id = GalleryModel.gql("WHERE name = :name", name='Photographs').fetch(1)[0].key()
         elif (self.request.path.startswith('/paintings')):
             gal_name = 'paintings'
             gal_id = GalleryModel.gql("WHERE name = :name", name='Paintings').fetch(1)[0].key()
@@ -82,8 +82,9 @@ class Gallery(BaseRequestHandler):
             xml += '<pics>'
             for img in imgs:
                 src = '/image/?render=%s' % img.key()
-                xml += '<pic src="%s" title="%s"/>' % (src, img.name)
+                xml += '<pic src=%s title=%s/>' % (quoteattr(src), quoteattr(img.name))
             xml += '</pics>'
+            self.response.headers['Content-Type'] = 'application/xml'
             self.response.out.write(xml)
         else:
             self.error(503)

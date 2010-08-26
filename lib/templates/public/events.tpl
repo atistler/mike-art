@@ -1,7 +1,7 @@
 <div id="scroll" class="events">
     {% for event in events %}
     <h5>{{event.name}}</h5>
-    <table style="margin-left: 40px;">
+    <table style="margin-left: 40px; margin-bottom: 20px;">
         <col width="80px"></col>
         <col></col>
         <col width="10%"></col>

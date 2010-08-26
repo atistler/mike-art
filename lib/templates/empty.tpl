@@ -3,9 +3,7 @@
 <head>
 	{% include "public/_head.tpl" %}
 </head>
-<body>
-<div class="content">
-	{% include "public/_main.tpl" %}
-</div>
+<body style="background:black;">
+    {% include template %}
 </body>
 </html>
