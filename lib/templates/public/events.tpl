@@ -1,20 +1,15 @@
-<div id="scroll" class="events">
+<div id="scroll" class="events scroll">
     {% for event in events %}
-    <h5>{{event.name}}</h5>
+    <h4>{{event.name}}</h4>
     <table style="margin-left: 40px; margin-bottom: 20px;">
         <col width="80px"></col>
-        <col></col>
-        <col width="10%"></col>
         <tbody>
             <tr>
-                <td>Where:</td>
-                <td>{{event.location}}</td>
-                <td>
-                    <img style="padding-left:10px;"width="20px" height="20px" title="View Map" class="openlink" href="http://maps.google.com?q={{event.location}}" src="/img/map-icon.png"/>
-                </td>
+                <td><b>Where:</b></td>
+                <td><a href="" link_to="http://maps.google.com?q={{event.location}}" class="openlink tip" title="View in Google Maps" >{{event.location}}</a></td>
             </tr>
             <tr>
-                <td>When:</td>
+                <td><b>When:</b></td>
                 <td>{{event.date}}</td>
                 <td></td>
             </tr>
@@ -22,16 +17,3 @@
     </table>
     {% endfor %}
 </div>
-<div id="track_event">
-    <div id="thumb_event"></div>
-</div>
-
-<script type="text/javascript">
-var scr = new ScrollBar('scroll', 'track_event', 'thumb_event');
-        new Drag('scroll', {
-                'modifiers': {y: 'height', x: false},
-                onDrag: function(){
-                        scr.update();
-                }
-        });
-</script>

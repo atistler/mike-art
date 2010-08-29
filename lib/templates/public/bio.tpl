@@ -8,7 +8,7 @@
 
 	<br/>
 	<h4>Exhibitions and Awards</h4>
-	<div class="awards" id="scroll">
+	<div class="awards scroll" id="scroll">
 		<table>
 			<tr>
 				<td>
@@ -127,7 +127,7 @@
 				</td>
 				<td>
 					<ul>
-						<li class="exhibition">Mason Gross School of the Arts Gallery, New Brunswick, NJ</li>
+						<li class="exhibition">Mason Gross School of the Arts Gallery<br>New Brunswick, NJ</li>
 						<li class="description">Arena: BFA Thesis Exhibition</li>
 					</ul>
 				</td>
@@ -141,7 +141,7 @@
 				</td>
 				<td>
 					<ul>
-						<li class="exhibition">Mason Gross School of the Arts Gallery, New Brunswick, NJ</li>
+						<li class="exhibition">Mason Gross School of the Arts Gallery<br>New Brunswick, NJ</li>
 						<li class="description">Art Open</li>
 					</ul>
 				</td>
@@ -156,18 +156,4 @@
 			</tr>
 		</table>
 	</div>
-	<div id="track">
-		<div id="thumb">
-		</div>
-	</div>
 </div>
-
-<script type="text/javascript">
-	var scr = new ScrollBar('scroll', 'track', 'thumb');
-	new Drag('scroll', {
-		'modifiers': {y: 'height', x: false},
-		onDrag: function(){
-			scr.update();
-		}
-	});
-</script>

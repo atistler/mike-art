@@ -1,5 +1,3 @@
-//MooTools More, <http://mootools.net/more>. Copyright (c) 2006-2008 Valerio Proietti, <http://mad4milk.net>, MIT Style License.
-
 Fx.Scroll=new Class({Extends:Fx,options:{offset:{x:0,y:0},wheelStops:true},initialize:function(B,A){this.element=this.subject=$(B);this.parent(A);var D=this.cancel.bind(this,false);
 if($type(this.element)!="element"){this.element=$(this.element.getDocument().body);}var C=this.element;if(this.options.wheelStops){this.addEvent("start",function(){C.addEvent("mousewheel",D);
 },true);this.addEvent("complete",function(){C.removeEvent("mousewheel",D);},true);}},set:function(){var A=Array.flatten(arguments);this.element.scrollTo(A[0],A[1]);

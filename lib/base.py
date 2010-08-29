@@ -4,13 +4,14 @@ import os
 from google.appengine.ext.webapp import template, RequestHandler
 
 
-_DEBUG=False
+_DEBUG=True
 
 class BaseRequestHandler(RequestHandler):
 	def generate(self,template_name,template_values={}):
 		values = {
 			"request":	self.request,
-			"app_name":	"michaelferrari.net"
+			"app_name":	"michaelferrari.net",
+                        "current_page": "home"
 		}
 
 		values.update(template_values)

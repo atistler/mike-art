@@ -19,8 +19,8 @@
 		<dd><input type="text" name="email"/></dd>
 		<dt></dt>
 		<dd>
-                    <button class="rounded" type="submit" name="create" value="1">
-                        <span>Sign-up</span>
+                    <button class="button" type="submit" name="create" value="1">
+                        Sign-up
                     </button>
                 </dd>
 	</dl>

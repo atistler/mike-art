@@ -1,27 +1,12 @@
 #!/usr/bin/env python
 
-import cgi
-import datetime
-import logging
-import os
-import wsgiref.handlers
-from django.template import Context
-from django.template import Template
-import django.template.loader
 from google.appengine.api import images
-from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-from lib.base import BaseRequestHandler
-from lib.base import PageNotFound
+from lib.base import BaseRequestHandler, PageNotFound
 from lib.getimageinfo import getImageInfo
-from lib.models import EventModel
-from lib.models import GalleryModel
-from lib.models import ImageModel2, ImageBlobModel
-from lib.models import LinkModel
-from lib.models import SubscriberModel
+from lib.models import EventModel, GalleryModel, ImageModel2, LinkModel, SubscriberModel
 
 
 template_base = "admin2.tpl"

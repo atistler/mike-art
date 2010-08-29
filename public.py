@@ -1,18 +1,14 @@
 #!/usr/bin/env python
 
+import logging
+import datetime
 from google.appengine.api import images
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from lib.base import BaseRequestHandler
 from lib.getimageinfo import getImageInfo
-from lib.models import EventModel
-from lib.models import GalleryModel
-from lib.models import ImageModel2
-from lib.models import LinkModel
-from lib.models import SubscriberModel
-import logging
-import datetime
+from lib.models import EventModel, GalleryModel, ImageModel2, LinkModel, SubscriberModel
 from xml.sax.saxutils import quoteattr
 
 
@@ -63,7 +59,7 @@ class Gallery(BaseRequestHandler):
         elif ( self.request.path.endswith('flash') ):
             self.view_flash(gal_name)
         else:
-            self.view(gal_id)
+            self.view(gal_id, gal_name)
 
     def view_flash(self,gal_name):
         data = {
@@ -89,13 +85,14 @@ class Gallery(BaseRequestHandler):
         else:
             self.error(503)
 
-    def view(self, id):
+    def view(self, id, gal_name):
         gal = GalleryModel.get(id)
         if (gal):
             imgs = ImageModel2.gql("WHERE gallery = :gallery", gallery=gal.key()).fetch(_MAX_FETCH)
             imgs = sorted(imgs, priority_sort)
                 
             data = {
+                "gal_name":     gal_name,
                 "gal":		gal,
                 "imgs":		imgs,
                 "template":	"public/gallery_view.tpl"

@@ -1,11 +1,19 @@
 window.addEvent('load', function() {
-    $$('.link').addEvent('click', function() {
+
+    var my_tips = new Tips($$('.tip'));
+
+    var my_scroll = new MooScroll({
+        'selector': '.scroll'
+    });
+    
+    $$('.link').addEvent('click', function(ev) {
         var href = this.getProperty('href');
         window.location = href;
     });
 
-    $$('.openlink').addEvent('click', function() {
-        var href = this.getProperty('href');
+    $$('.openlink').addEvent('click', function(ev) {
+        ev.stop();
+        var href = this.getProperty('link_to');
         window.open(href);
     });
 
